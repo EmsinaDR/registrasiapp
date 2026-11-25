@@ -10,10 +10,7 @@
   let sedangMengirim = false;
   let timerPengiriman = null;
 
-  // ==================================
   // ACCORDION UTAMA
-  // ==================================
-
   accordions.forEach(function (accordion) {
 
     const summary = accordion.querySelector(":scope > summary");
@@ -34,17 +31,14 @@
 
   });
 
-  // ==================================
-  // DROPDOWN APLIKASI KLAIM
-  // ==================================
-
+  // DROPDOWN APLIKASI
   const dropdownAplikasi = document.querySelector(".ata-select-dropdown");
   const jumlahAplikasi = document.getElementById("jumlahAplikasi");
 
   if (dropdownAplikasi && jumlahAplikasi) {
 
     const checkboxAplikasi = dropdownAplikasi.querySelectorAll(
-      'input[name="Daftar Aplikasi Klaim[]"]'
+      'input[name="Daftar Aplikasi Klaim"]'
     );
 
     checkboxAplikasi.forEach(function (checkbox) {
@@ -54,9 +48,6 @@
         const terpilih = Array.from(checkboxAplikasi)
           .filter(function (item) {
             return item.checked;
-          })
-          .map(function (item) {
-            return item.value;
           });
 
         jumlahAplikasi.textContent = terpilih.length
@@ -67,7 +58,6 @@
 
     });
 
-    // Tutup dropdown ketika klik di luar
     document.addEventListener("click", function (e) {
 
       if (!dropdownAplikasi.contains(e.target)) {
@@ -78,10 +68,7 @@
 
   }
 
-  // ==================================
   // VALIDASI FORM
-  // ==================================
-
   form.addEventListener("invalid", function (e) {
 
     const accordion = e.target.closest(".ata-accordion");
@@ -98,10 +85,7 @@
 
   }, true);
 
-  // ==================================
   // PENGIRIMAN FORM
-  // ==================================
-
   form.addEventListener("submit", function (e) {
 
     if (sedangMengirim) {
@@ -114,9 +98,8 @@
       return;
     }
 
-    // Validasi minimal satu aplikasi
     const aplikasiTerpilih = form.querySelectorAll(
-      'input[name="Daftar Aplikasi Klaim[]"]:checked'
+      'input[name="Daftar Aplikasi Klaim"]:checked'
     );
 
     if (aplikasiTerpilih.length === 0) {
@@ -143,7 +126,6 @@
       return;
     }
 
-    // Mulai pengiriman
     sedangMengirim = true;
 
     tombol.disabled = true;
@@ -164,7 +146,7 @@
 
       status.className = "error";
       status.textContent =
-        "Waktu tunggu habis. Periksa status pengiriman dan Google Sheets sebelum mencoba kembali.";
+        "Waktu tunggu habis. Periksa Google Sheets sebelum mencoba kembali.";
 
     }, 20000);
 
