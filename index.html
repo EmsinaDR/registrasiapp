@@ -1,24 +1,265 @@
-<label>
-  <input type="checkbox" name="Daftar Aplikasi Klaim" value="Aplikasi 1">
-  Aplikasi 1
-</label>
 
-<label>
-  <input type="checkbox" name="Daftar Aplikasi Klaim" value="Aplikasi 2">
-  Aplikasi 2
-</label>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<label>
-  <input type="checkbox" name="Daftar Aplikasi Klaim" value="Aplikasi 3">
-  Aplikasi 3
-</label>
+  <title>Form Pendaftaran - Ata Digital</title>
 
-<label>
-  <input type="checkbox" name="Daftar Aplikasi Klaim" value="Aplikasi 4">
-  Aplikasi 4
-</label>
+  <link rel="stylesheet" href="style.css?v=5">
+  <script src="script.js?v=5" defer></script>
+</head>
 
-<label>
-  <input type="checkbox" name="Daftar Aplikasi Klaim" value="Aplikasi 5">
-  Aplikasi 5
-</label>
+<body>
+
+<div id="ata-form-container">
+
+  <div class="ata-header">
+    <h2>FORM PENDAFTARAN</h2>
+    <p>Lengkapi seluruh data berikut dengan benar.</p>
+  </div>
+
+  <form
+    id="formRegistrasi"
+    action="https://script.google.com/macros/s/AKfycbwzN5BuQvimv-yMRABqZO6jMt3E5-3_fCTY8aGp_V4nbShRX7c1-WT1GKNkuewwSVk/exec"
+    method="POST"
+    target="hasilPengiriman"
+    accept-charset="UTF-8"
+  >
+
+    <!-- DATA PESANAN -->
+    <details class="ata-accordion" open>
+      <summary>
+        <span class="accordion-number">01</span>
+        <span class="accordion-title">DATA PESANAN</span>
+        <span class="accordion-arrow"></span>
+      </summary>
+
+      <div class="accordion-body">
+
+        <div class="ata-field">
+          <label>No Pesanan <span>*</span></label>
+          <input type="text" name="No Pesanan" placeholder="Masukkan nomor pesanan" required>
+        </div>
+
+        <div class="ata-field">
+          <label>Tanggal Pesanan <span>*</span></label>
+          <input type="date" name="Tanggal Pesanan" required>
+        </div>
+
+        <div class="ata-field">
+          <label>Username Pesanan <span>*</span></label>
+          <input type="text" name="Username Pesanan" placeholder="Username akun pemesan" required>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- IDENTITAS PEMESAN -->
+    <details class="ata-accordion">
+      <summary>
+        <span class="accordion-number">02</span>
+        <span class="accordion-title">IDENTITAS PEMESAN</span>
+        <span class="accordion-arrow"></span>
+      </summary>
+
+      <div class="accordion-body">
+
+        <div class="ata-field">
+          <label>Nama <span>*</span></label>
+          <input type="text" name="Nama" placeholder="Nama lengkap pemesan" required>
+        </div>
+
+        <div class="ata-field">
+          <label>NIP <span>*</span></label>
+          <input type="text" name="NIP" placeholder="Nomor Induk Pegawai" required>
+        </div>
+
+        <div class="ata-field">
+          <label>Email <span>*</span></label>
+          <input type="email" name="Email" placeholder="Alamat email aktif" required>
+        </div>
+
+        <div class="ata-field">
+          <label>No HP <span>*</span></label>
+          <input type="tel" name="No HP" placeholder="Nomor WhatsApp aktif" required>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- DATA SEKOLAH -->
+    <details class="ata-accordion">
+      <summary>
+        <span class="accordion-number">03</span>
+        <span class="accordion-title">DATA SEKOLAH</span>
+        <span class="accordion-arrow"></span>
+      </summary>
+
+      <div class="accordion-body">
+
+        <div class="ata-field">
+          <label>Nama Sekolah <span>*</span></label>
+          <input type="text" name="Nama Sekolah" placeholder="Nama lengkap sekolah" required>
+        </div>
+
+        <div class="ata-field">
+          <label>Akreditasi <span>*</span></label>
+          <select name="Akreditasi" required>
+            <option value="">-- Pilih Akreditasi --</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="Belum Terakreditasi">Belum Terakreditasi</option>
+          </select>
+        </div>
+
+        <div class="ata-field">
+          <label>NPSN <span>*</span></label>
+          <input type="text" name="NPSN" placeholder="Nomor Pokok Sekolah Nasional" required>
+        </div>
+
+        <div class="ata-field full-width">
+          <label>Alamat <span>*</span></label>
+          <textarea name="Alamat" rows="3" placeholder="Alamat lengkap sekolah" required></textarea>
+        </div>
+
+        <div class="ata-field">
+          <label>Desa <span>*</span></label>
+          <input type="text" name="Desa" placeholder="Nama desa/kelurahan" required>
+        </div>
+
+        <div class="ata-field">
+          <label>Kecamatan <span>*</span></label>
+          <input type="text" name="Kecamatan" placeholder="Nama kecamatan" required>
+        </div>
+
+        <div class="ata-field">
+          <label>Kota / Kabupaten <span>*</span></label>
+          <input type="text" name="Kota" placeholder="Nama kabupaten/kota" required>
+        </div>
+
+        <div class="ata-field">
+          <label>Provinsi <span>*</span></label>
+          <input type="text" name="Provinsi" placeholder="Nama provinsi" required>
+        </div>
+
+        <div class="ata-field">
+          <label>Nama Kepala Sekolah <span>*</span></label>
+          <input type="text" name="Nama Kepala" placeholder="Nama kepala sekolah" required>
+        </div>
+
+        <div class="ata-field">
+          <label>NIP Kepala Sekolah <span>*</span></label>
+          <input type="text" name="NIP Kepala" placeholder="NIP kepala sekolah" required>
+        </div>
+
+        <div class="ata-field">
+          <label>No HP Kepala Sekolah <span>*</span></label>
+          <input type="tel" name="No HP Kepala" placeholder="Nomor HP kepala sekolah" required>
+        </div>
+
+        <div class="ata-field">
+          <label>Tahun Pelajaran <span>*</span></label>
+          <input type="text" name="Tahun Pelajaran" placeholder="Contoh: 2026/2027" required>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- DAFTAR APLIKASI KLAIM -->
+    <details class="ata-accordion">
+      <summary>
+        <span class="accordion-number">04</span>
+        <span class="accordion-title">DAFTAR APLIKASI KLAIM</span>
+        <span class="accordion-arrow"></span>
+      </summary>
+
+      <div class="accordion-body">
+
+        <div class="ata-field full-width">
+          <label>Daftar Aplikasi Klaim <span>*</span></label>
+
+          <details class="ata-select-dropdown">
+            <summary>
+              <span id="jumlahAplikasi">Pilih aplikasi yang diklaim</span>
+              <span class="dropdown-arrow"></span>
+            </summary>
+
+            <div class="ata-options">
+
+              <label>
+                <input type="checkbox" name="Daftar Aplikasi Klaim" value="Aplikasi 1">
+                Aplikasi 1
+              </label>
+
+              <label>
+                <input type="checkbox" name="Daftar Aplikasi Klaim" value="Aplikasi 2">
+                Aplikasi 2
+              </label>
+
+              <label>
+                <input type="checkbox" name="Daftar Aplikasi Klaim" value="Aplikasi 3">
+                Aplikasi 3
+              </label>
+
+              <label>
+                <input type="checkbox" name="Daftar Aplikasi Klaim" value="Aplikasi 4">
+                Aplikasi 4
+              </label>
+
+              <label>
+                <input type="checkbox" name="Daftar Aplikasi Klaim" value="Aplikasi 5">
+                Aplikasi 5
+              </label>
+
+            </div>
+          </details>
+        </div>
+
+        <div class="ata-field full-width">
+          <label>Keterangan / Catatan</label>
+          <textarea
+            name="Keterangan"
+            rows="4"
+            placeholder="Tuliskan keterangan atau catatan tambahan..."
+          ></textarea>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- ANTI SPAM -->
+    <div class="ata-honeypot" aria-hidden="true">
+      <input type="text" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <!-- TOMBOL KIRIM -->
+    <div class="ata-footer">
+      <p>Pastikan seluruh data sudah benar sebelum dikirim.</p>
+
+      <button type="submit" id="btnKirim">
+        KIRIM PENDAFTARAN
+      </button>
+
+      <div id="statusForm" role="status" aria-live="polite"></div>
+    </div>
+
+  </form>
+
+  <!-- HASIL PENGIRIMAN -->
+  <div class="ata-result">
+    <h3>STATUS PENDAFTARAN</h3>
+
+    <iframe
+      name="hasilPengiriman"
+      id="hasilPengiriman"
+      title="Respons pendaftaran"
+    ></iframe>
+  </div>
+
+</div>
+
+</body>
+</html>
