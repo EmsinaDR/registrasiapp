@@ -1,1 +1,26 @@
-
+[
+  {
+    "tahun_pelajaran": "2026/2027",
+    "nip": "12345",
+    "email": "emsinadr@gmail.com",
+    "alamat": "Jl. Makensi BLock Chagor Belakang PDAM Desa Banjarharjo",
+    "no_hp": "085329860005",
+    "username_pesanan": "septa",
+    "website": "",
+    "provinsi": "Jawa Tengah",
+    "akreditasi": "A",
+    "no_pesanan": "No Pesanan",
+    "nama": "dany",
+    "kecamatan": "Kecamatan",
+    "desa": "Desa",
+    "nama_sekolah": "Nama Sekolah",
+    "kota": "Kota Tegal",
+    "nip_kepala": "NIP Kepala Sekola",
+    "npsn": "NPSN",
+    "daftar_aplikasi_klaim": "Aplikasi 1",
+    "keterangan": "yyyyyyy",
+    "no_hp_kepala": "085329860005",
+    "nama_kepala": "Nama Kepala Sekolah",
+    "tanggal_pesanan": "2026-11-13"
+  }
+]
