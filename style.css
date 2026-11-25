@@ -5,60 +5,82 @@
 
 body {
   margin: 0;
-  padding: 20px;
-  background: #f3f4f6;
+  padding: 30px 18px;
+  background: #f1f5f9;
   font-family: Arial, sans-serif;
-  color: #111827;
+  color: #1e293b;
 }
 
 #ata-form-container {
-  max-width: 600px;
-  margin: 25px auto;
-  padding: 25px;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 5px 25px rgba(15, 23, 42, 0.05);
 }
 
+/* HEADER */
+
 .ata-header {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .ata-header h2 {
   margin: 0 0 8px;
-  font-size: 23px;
-  color: #111827;
+  color: #1d4ed8;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: .3px;
 }
 
 .ata-header p {
   margin: 0;
+  color: #64748b;
   font-size: 14px;
-  color: #6b7280;
+  line-height: 1.6;
 }
+
+/* SECTION */
 
 .ata-section {
-  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 22px;
+  margin-bottom: 24px;
+  padding: 22px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
 }
 
-.ata-section h3,
-.ata-result h3 {
-  margin: 0 0 20px;
-  padding-bottom: 12px;
+.ata-section h3 {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-bottom: 13px;
   border-bottom: 2px solid #2563eb;
-  font-size: 15px;
   color: #1d4ed8;
+  font-size: 15px;
+  letter-spacing: .4px;
 }
+
+/* FIELD */
 
 .ata-field {
-  margin-bottom: 18px;
+  min-width: 0;
+  margin: 0;
 }
 
 .ata-field label {
   display: block;
   margin-bottom: 7px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #374151;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .ata-field label span {
@@ -70,47 +92,70 @@ body {
 .ata-field textarea {
   display: block;
   width: 100%;
-  padding: 12px;
-  border: 1px solid #d1d5db;
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
   border-radius: 7px;
-  background: #fff;
-  color: #111827;
+  background: #ffffff;
+  color: #1e293b;
   font-family: Arial, sans-serif;
   font-size: 14px;
   outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.ata-field input,
+.ata-field select {
+  height: 42px;
+}
+
+.ata-field textarea {
+  min-height: 85px;
+  resize: vertical;
 }
 
 .ata-field input:focus,
 .ata-field select:focus,
 .ata-field textarea:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, .10);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .10);
 }
 
-.ata-field textarea {
-  resize: vertical;
+/* FIELD FULL WIDTH */
+
+.ata-field:has(textarea) {
+  grid-column: 1 / -1;
 }
+
+/* FOOTER */
 
 .ata-footer {
-  margin-top: 30px;
+  margin-top: 25px;
+  padding: 22px;
+  border-radius: 10px;
+  background: #eff6ff;
 }
 
 .ata-footer p {
-  margin-bottom: 15px;
+  margin: 0 0 15px;
+  color: #475569;
   font-size: 13px;
-  color: #6b7280;
+  line-height: 1.6;
 }
 
 #btnKirim {
   width: 100%;
-  padding: 15px;
-  border: 0;
-  border-radius: 7px;
+  min-height: 48px;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
   background: #2563eb;
-  color: #fff;
+  color: #ffffff;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: .4px;
   cursor: pointer;
+  transition: background .2s;
 }
 
 #btnKirim:hover {
@@ -118,23 +163,25 @@ body {
 }
 
 #btnKirim:disabled {
-  background: #9ca3af;
+  background: #94a3b8;
   cursor: not-allowed;
 }
+
+/* STATUS */
 
 #statusForm {
   display: none;
   margin-top: 15px;
-  padding: 12px;
+  padding: 13px;
   border-radius: 7px;
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 #statusForm.info {
   display: block;
-  background: #eff6ff;
-  color: #1d4ed8;
+  background: #dbeafe;
+  color: #1e40af;
 }
 
 #statusForm.error {
@@ -143,18 +190,34 @@ body {
   color: #991b1b;
 }
 
+/* RESULT */
+
 .ata-result {
-  margin-top: 30px;
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.ata-result h3 {
+  margin: 0 0 15px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #2563eb;
+  color: #1d4ed8;
+  font-size: 14px;
 }
 
 #hasilPengiriman {
   display: block;
   width: 100%;
   height: 150px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
   border-radius: 7px;
-  background: #fff;
+  background: #f8fafc;
 }
+
+/* HONEYPOT */
 
 .ata-honeypot {
   position: absolute;
@@ -164,18 +227,63 @@ body {
   overflow: hidden;
 }
 
-@media (max-width: 480px) {
+/* TABLET */
+
+@media (max-width: 700px) {
   body {
-    padding: 10px;
+    padding: 15px 10px;
   }
 
   #ata-form-container {
-    margin: 10px auto;
+    padding: 20px;
+  }
+
+  .ata-section {
+    gap: 16px;
     padding: 18px;
-    border-radius: 8px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 520px) {
+  body {
+    padding: 8px;
+  }
+
+  #ata-form-container {
+    padding: 15px;
+    border-radius: 9px;
   }
 
   .ata-header h2 {
-    font-size: 20px;
+    font-size: 21px;
+  }
+
+  .ata-section {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .ata-section h3 {
+    grid-column: 1;
+  }
+
+  .ata-field:has(textarea) {
+    grid-column: 1;
+  }
+
+  .ata-field input,
+  .ata-field select {
+    height: 44px;
+  }
+
+  .ata-footer {
+    padding: 16px;
+  }
+
+  .ata-result {
+    padding: 15px;
   }
 }
