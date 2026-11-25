@@ -153,3 +153,16 @@
   });
 
 })();
+const form = document.querySelector("form");
+
+form.addEventListener("submit", function (event) {
+
+    const formData = new FormData(form);
+
+    console.log("=== DATA YANG DIKIRIM ===");
+
+    for (const [key, value] of formData.entries()) {
+        console.log(key + ":", value);
+    }
+
+});
