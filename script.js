@@ -5,24 +5,145 @@
   const tombol = document.getElementById("btnKirim");
   const status = document.getElementById("statusForm");
 
+  const accordions = document.querySelectorAll(".ata-accordion");
+
   let sedangMengirim = false;
   let timerPengiriman = null;
 
+  // ==================================
+  // ACCORDION UTAMA
+  // ==================================
+
+  accordions.forEach(function (accordion) {
+
+    const summary = accordion.querySelector(":scope > summary");
+
+    summary.addEventListener("click", function (e) {
+
+      e.preventDefault();
+
+      const akanDibuka = !accordion.open;
+
+      accordions.forEach(function (item) {
+        item.open = false;
+      });
+
+      accordion.open = akanDibuka;
+
+    });
+
+  });
+
+  // ==================================
+  // DROPDOWN APLIKASI KLAIM
+  // ==================================
+
+  const dropdownAplikasi = document.querySelector(".ata-select-dropdown");
+  const jumlahAplikasi = document.getElementById("jumlahAplikasi");
+
+  if (dropdownAplikasi && jumlahAplikasi) {
+
+    const checkboxAplikasi = dropdownAplikasi.querySelectorAll(
+      'input[name="Daftar Aplikasi Klaim[]"]'
+    );
+
+    checkboxAplikasi.forEach(function (checkbox) {
+
+      checkbox.addEventListener("change", function () {
+
+        const terpilih = Array.from(checkboxAplikasi)
+          .filter(function (item) {
+            return item.checked;
+          })
+          .map(function (item) {
+            return item.value;
+          });
+
+        jumlahAplikasi.textContent = terpilih.length
+          ? terpilih.length + " aplikasi dipilih"
+          : "Pilih aplikasi yang diklaim";
+
+      });
+
+    });
+
+    // Tutup dropdown ketika klik di luar
+    document.addEventListener("click", function (e) {
+
+      if (!dropdownAplikasi.contains(e.target)) {
+        dropdownAplikasi.open = false;
+      }
+
+    });
+
+  }
+
+  // ==================================
+  // VALIDASI FORM
+  // ==================================
+
+  form.addEventListener("invalid", function (e) {
+
+    const accordion = e.target.closest(".ata-accordion");
+
+    if (accordion) {
+
+      accordions.forEach(function (item) {
+        item.open = false;
+      });
+
+      accordion.open = true;
+
+    }
+
+  }, true);
+
+  // ==================================
+  // PENGIRIMAN FORM
+  // ==================================
+
   form.addEventListener("submit", function (e) {
 
-    // Mencegah pengiriman ganda
     if (sedangMengirim) {
       e.preventDefault();
       return;
     }
 
-    // Validasi browser
     if (!form.reportValidity()) {
       e.preventDefault();
       return;
     }
 
-    // Tandai proses pengiriman
+    // Validasi minimal satu aplikasi
+    const aplikasiTerpilih = form.querySelectorAll(
+      'input[name="Daftar Aplikasi Klaim[]"]:checked'
+    );
+
+    if (aplikasiTerpilih.length === 0) {
+
+      e.preventDefault();
+
+      const bagianAplikasi = dropdownAplikasi.closest(".ata-accordion");
+
+      accordions.forEach(function (item) {
+        item.open = false;
+      });
+
+      bagianAplikasi.open = true;
+      dropdownAplikasi.open = true;
+
+      status.className = "error";
+      status.textContent = "Pilih minimal satu aplikasi yang akan diklaim.";
+
+      dropdownAplikasi.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+      return;
+    }
+
+    // Mulai pengiriman
     sedangMengirim = true;
 
     tombol.disabled = true;
@@ -30,9 +151,8 @@
 
     status.className = "info";
     status.textContent =
-      "Data sedang dikirim ke server. Silakan tunggu respons pada bagian Status Pendaftaran.";
+      "Data sedang dikirim. Silakan tunggu respons dari server.";
 
-    // Kembalikan tombol setelah batas waktu
     clearTimeout(timerPengiriman);
 
     timerPengiriman = setTimeout(function () {
@@ -44,7 +164,7 @@
 
       status.className = "error";
       status.textContent =
-        "Waktu tunggu habis. Periksa respons server dan Google Sheets sebelum mencoba mengirim ulang.";
+        "Waktu tunggu habis. Periksa status pengiriman dan Google Sheets sebelum mencoba kembali.";
 
     }, 20000);
 
