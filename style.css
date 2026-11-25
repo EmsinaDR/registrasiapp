@@ -5,7 +5,7 @@
 
 body {
   margin: 0;
-  padding: 30px 18px;
+  padding: 30px 15px;
   background: #f1f5f9;
   font-family: Arial, sans-serif;
   color: #1e293b;
@@ -13,66 +13,141 @@ body {
 
 #ata-form-container {
   width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 30px;
-  background: #ffffff;
+  max-width: 850px;
+  margin: auto;
+  padding: 28px;
+  background: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 14px;
-  box-shadow: 0 5px 25px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 5px 25px rgba(15, 23, 42, .05);
 }
 
 /* HEADER */
 
 .ata-header {
-  margin-bottom: 30px;
-  padding-bottom: 22px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #e2e8f0;
 }
 
 .ata-header h2 {
   margin: 0 0 8px;
   color: #1d4ed8;
-  font-size: 25px;
-  font-weight: 700;
-  letter-spacing: .3px;
+  font-size: 24px;
 }
 
 .ata-header p {
   margin: 0;
   color: #64748b;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-/* SECTION */
+/* ACCORDION */
 
-.ata-section {
+.ata-accordion {
+  margin-bottom: 13px;
+  overflow: visible;
+  border: 1px solid #dbe3ef;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.ata-accordion > summary {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 58px;
+  padding: 15px 18px;
+  background: #f8fafc;
+  border-radius: 9px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.ata-accordion > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ata-accordion > summary:hover {
+  background: #eff6ff;
+}
+
+.ata-accordion[open] > summary {
+  background: #eff6ff;
+  border-bottom: 1px solid #dbeafe;
+  border-radius: 9px 9px 0 0;
+}
+
+.accordion-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.accordion-title {
+  flex: 1;
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: .3px;
+}
+
+.accordion-arrow {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #64748b;
+  border-bottom: 2px solid #64748b;
+  transform: rotate(45deg);
+  transition: transform .2s;
+  margin-right: 5px;
+  margin-top: -5px;
+}
+
+.ata-accordion[open] > summary .accordion-arrow {
+  transform: rotate(225deg);
+  margin-top: 5px;
+}
+
+/* ACCORDION BODY */
+
+.accordion-body {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px 22px;
-  margin-bottom: 24px;
+  gap: 18px 20px;
   padding: 22px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 11px;
+  animation: accordionOpen .2s ease;
 }
 
-.ata-section h3 {
-  grid-column: 1 / -1;
-  margin: 0;
-  padding-bottom: 13px;
-  border-bottom: 2px solid #2563eb;
-  color: #1d4ed8;
-  font-size: 15px;
-  letter-spacing: .4px;
+@keyframes accordionOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* FIELD */
 
 .ata-field {
   min-width: 0;
-  margin: 0;
+}
+
+.ata-field.full-width {
+  grid-column: 1 / -1;
 }
 
 .ata-field label {
@@ -96,12 +171,11 @@ body {
   padding: 11px 12px;
   border: 1px solid #cbd5e1;
   border-radius: 7px;
-  background: #ffffff;
+  background: #fff;
   color: #1e293b;
   font-family: Arial, sans-serif;
   font-size: 14px;
   outline: none;
-  transition: border-color .2s, box-shadow .2s;
 }
 
 .ata-field input,
@@ -118,21 +192,98 @@ body {
 .ata-field select:focus,
 .ata-field textarea:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, .10);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
 }
 
-/* FIELD FULL WIDTH */
+/* CUSTOM MULTI SELECT */
 
-.ata-field:has(textarea) {
-  grid-column: 1 / -1;
+.ata-select-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.ata-select-dropdown > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 43px;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  color: #64748b;
+  font-size: 14px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.ata-select-dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ata-select-dropdown > summary:hover {
+  border-color: #2563eb;
+}
+
+.dropdown-arrow {
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid #64748b;
+  border-bottom: 2px solid #64748b;
+  transform: rotate(45deg);
+  margin-top: -5px;
+  transition: transform .2s;
+}
+
+.ata-select-dropdown[open] .dropdown-arrow {
+  transform: rotate(225deg);
+  margin-top: 5px;
+}
+
+.ata-options {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(15, 23, 42, .12);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.ata-options label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  margin: 0;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.ata-options label:hover {
+  background: #eff6ff;
+}
+
+.ata-options input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #2563eb;
 }
 
 /* FOOTER */
 
 .ata-footer {
-  margin-top: 25px;
+  margin-top: 22px;
   padding: 22px;
-  border-radius: 10px;
+  border-radius: 9px;
   background: #eff6ff;
 }
 
@@ -140,22 +291,20 @@ body {
   margin: 0 0 15px;
   color: #475569;
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 #btnKirim {
   width: 100%;
   min-height: 48px;
   padding: 14px;
-  border: none;
-  border-radius: 8px;
+  border: 0;
+  border-radius: 7px;
   background: #2563eb;
-  color: #ffffff;
+  color: #fff;
   font-size: 14px;
-  font-weight: 700;
-  letter-spacing: .4px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background .2s;
 }
 
 #btnKirim:hover {
@@ -172,10 +321,10 @@ body {
 #statusForm {
   display: none;
   margin-top: 15px;
-  padding: 13px;
+  padding: 12px;
   border-radius: 7px;
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 #statusForm.info {
@@ -190,14 +339,13 @@ body {
   color: #991b1b;
 }
 
-/* RESULT */
+/* HASIL PENGIRIMAN */
 
 .ata-result {
   margin-top: 25px;
   padding: 20px;
   border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  background: #ffffff;
+  border-radius: 9px;
 }
 
 .ata-result h3 {
@@ -227,56 +375,34 @@ body {
   overflow: hidden;
 }
 
-/* TABLET */
+/* RESPONSIVE */
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
+
   body {
-    padding: 15px 10px;
+    padding: 10px;
   }
 
   #ata-form-container {
-    padding: 20px;
-  }
-
-  .ata-section {
-    gap: 16px;
-    padding: 18px;
-  }
-}
-
-/* MOBILE */
-
-@media (max-width: 520px) {
-  body {
-    padding: 8px;
-  }
-
-  #ata-form-container {
-    padding: 15px;
-    border-radius: 9px;
+    padding: 16px;
   }
 
   .ata-header h2 {
     font-size: 21px;
   }
 
-  .ata-section {
+  .accordion-body {
     grid-template-columns: 1fr;
     gap: 15px;
-    padding: 15px;
+    padding: 17px;
   }
 
-  .ata-section h3 {
+  .ata-field.full-width {
     grid-column: 1;
   }
 
-  .ata-field:has(textarea) {
-    grid-column: 1;
-  }
-
-  .ata-field input,
-  .ata-field select {
-    height: 44px;
+  .ata-accordion > summary {
+    padding: 13px;
   }
 
   .ata-footer {
